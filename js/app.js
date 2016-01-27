@@ -17,11 +17,17 @@ var FlirtrModel = {
         var value = 0;
 
         patterns.forEach(function (obj) {
+            //se trovi la parola
             if (phrase.indexOf(obj.word) > -1) {
-                if (phrase.indexOf(obj.word) == -1) {
-                    //nothing
+
+                //Se non trovi il neutraliser
+                if (phrase.indexOf(obj.neutraliser) > -1) {
                 }
-                else {
+                //Se trivi il support
+                else if (phrase.indexOf(obj.support) > -1){
+                    value += obj.score;
+                }
+                else{
                     value += obj.score;
                 }
             }
@@ -37,7 +43,15 @@ var FlirtrModel = {
     },
 
     showValue: function (score) {
-        var newHtml = "Score: " + score;
+        var newHtml = "Score: ";
+
+        if (score > 0 )
+            newHtml += "flirty";
+        else if (score == 0 )
+            newHtml += "neutral";
+        else if (score < 0 )
+            newHtml += "friendly";
+
         $(".answer").html(newHtml);
     }
 
