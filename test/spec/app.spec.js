@@ -3,8 +3,12 @@
 
 describe("Flirtr", function() {
 
-  it("should...", function() {  
-    
-  });    
+  it("should give love 1 point", function() {
+    expect(FlirtrModel.getScore("love")).toEqual(1);
+  });
+
+  it("should not recognise numbers", function(){
+    expect(FlirtrModel.getScore("1").).toEqual(0);
+  })
  
 });
